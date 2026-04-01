@@ -1,11 +1,11 @@
 import { useAuthContext } from "@/context/AuthContext";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 
+import { AppNavigator } from "@/navigation/AppNavigator";
 import { LoginScreen } from "@/screens/auth/LoginScreen";
-import { ClothesScreen } from "@/screens/clothes/ClothesScreen";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export const RootNavigator = () => {
   const { user, initialized } = useAuthContext();
@@ -15,7 +15,7 @@ export const RootNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {user ? (
-        <Stack.Screen name="Wardrobe" component={ClothesScreen} />
+        <Stack.Screen name="App" component={AppNavigator} />
       ) : (
         <Stack.Screen name="Login" component={LoginScreen} />
       )}
